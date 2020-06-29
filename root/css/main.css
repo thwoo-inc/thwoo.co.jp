@@ -42,10 +42,11 @@ hr {
   border-top: 1px solid #bd0011;
 }
 h3 {
-  font-size: 28px;
+  font-size: 22px;
   color: #2d3033;
   font-weight: 300;
 }
+other_
 h4 {
   font-size: 22px;
   color: #2d3033;
@@ -502,15 +503,18 @@ ul li {
 }
 
 #news .caption {
-  padding: 20px 10px 30px;
+  padding: 10px 10px 20px;
 }
 #news .caption h3 {
-  font-size: 18px;
+  font-size: 16px;
   margin-top: 0px;
   margin-bottom: 0px;
 }
 #news .caption p {
   font-size: 12px;
+}
+#news .others {
+  text-align: center;
 }
 #news * {
   z-index: 2;
@@ -557,6 +561,11 @@ ul li {
 .article-text {
   margin: 40px 0 40px;
   padding: 20px 0px;
+}
+.article-text li {
+  list-style-type: disc;
+  margin-left: 24px;
+	text-align: left;
 }
 .article-back {
   text-align: right;
