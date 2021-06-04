@@ -1,6 +1,6 @@
 const Home = () =>  {
   return (
-    <div>
+    <div className="p-4 bg-purple-200">
       Hello, Flock!
     </div>
   )
