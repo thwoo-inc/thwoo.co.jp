@@ -8,7 +8,7 @@ const NewsCard = (props) => {
     <a href="" className="border rounded-lg overflow-hidden shadow-md">
       <div className="relative mb-4">
         <img src={props.thumbnail} alt={`${props.title}`} />
-        <h3 className="absolute bottom-0 w-full bg-white bg-opacity-75 px-4 py-2 text-lg font-bold">
+        <h3 className="absolute bottom-0 w-full bg-white bg-opacity-75 px-4 py-2 text-md sm:text-lg font-bold">
           {props.title}
         </h3>
       </div>

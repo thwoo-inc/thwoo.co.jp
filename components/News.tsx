@@ -2,8 +2,8 @@ import NewsCard from './NewsCard';
 
 const News = () => {
   return (
-    <div id="news" className="relative items-center justify-center">
-      <h2 className="mb-8 text-center text-xl md:text-2xl tracking-widest">
+    <div id="news" className="items-center justify-center">
+      <h2 className="w-32 mb-8 pb-1 mx-auto text-corporate-font text-center text-xl md:text-2xl tracking-widest border-b-2 border-corporate-primary">
         NEWS
       </h2>
       <div className="px-4 m-1 grid grid-row lg:grid-cols-2 2xl:grid-cols-3 gap-4 mb-4">
