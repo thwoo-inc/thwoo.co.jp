@@ -1,3 +1,5 @@
+import Image from 'next/Image';
+
 const NewsCard = (props) => {
   const descriptionMax = 60;
   const descriptionShort =
@@ -7,8 +9,13 @@ const NewsCard = (props) => {
   return (
     <a href="" className="border rounded-lg overflow-hidden shadow-md">
       <div className="relative mb-4">
-        <img src={props.thumbnail} alt={`${props.title}`} />
-        <h3 className="absolute bottom-0 w-full bg-white bg-opacity-75 px-4 py-2 text-md sm:text-lg font-bold">
+        <Image
+          src={props.thumbnail}
+          width="1200"
+          height="630"
+          alt={`${props.title}`}
+        />
+        <h3 className="absolute bottom-1.5 w-full bg-white bg-opacity-75 px-4 py-2 text-md sm:text-lg font-bold">
           {props.title}
         </h3>
       </div>
