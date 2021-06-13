@@ -11,7 +11,7 @@ const NewsCard = (props) => {
       href=""
       className="border rounded-lg overflow-hidden shadow-md hover:shadow-xl"
     >
-      <div className="relative">
+      <div className="relative flex">
         <h3 className="absolute bottom-0 w-full bg-white bg-opacity-75 px-4 py-2 text-md sm:text-lg font-bold z-10">
           {props.title}
         </h3>
