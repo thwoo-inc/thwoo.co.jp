@@ -1,6 +1,6 @@
 const Hero = () => {
   return (
-    <div className="relative bg-corporate-primary text-center mb-12">
+    <div className="relative bg-corporate-primary text-center">
       <div className="relative z-10">
         <p className="text-white pt-20 xl:pt-30 2xl:pt-36 text-xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl pb-2 tracking-wider">
           人は成りたい自分に成れる
@@ -11,7 +11,7 @@ const Hero = () => {
         {/* <h1 className="text-corporate-font text-md md:text-lg lg:text-2xl pb-4 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 2xl:pb-36">
           株式会社スオウ
         </h1> */}
-        <h1 className="pb-4 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 2xl:pb-36">
+        <h1 className="pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 2xl:pb-36">
           <img
             className="w-28 sm:w-36 md:w-40 lg:w-44 xl:w-48 2xl:w-52 mx-auto"
             src="/about/corporate-name-jp.png"

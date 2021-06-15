@@ -1,10 +1,9 @@
+import Section from './Section';
+
 const About = () => {
   return (
-    <div id="about" className="items-center justify-center mb-12">
-      <h2 className="w-32 mb-8 p-1 mx-auto text-corporate-font text-center text-xl md:text-2xl tracking-widest border-b-2 border-corporate-primary">
-        ABOUT
-      </h2>
-      <div className="flex flex-col lg:flex-row items-center px-4 mb-12">
+    <Section id="about" label="ABOUT">
+      <div className="flex flex-col lg:flex-row items-center px-4 mt-4 mb-8">
         <div className="flex-1 mx-auto p-8">
           <img className="w-24 mx-auto mb-6" src="/about/corporate-logo.png" />
         </div>
@@ -51,7 +50,7 @@ const About = () => {
           </table>
         </div>
       </div>
-    </div>
+    </Section>
   );
 };
 
