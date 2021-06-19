@@ -8,8 +8,15 @@ const Hero = () => {
         <p className="text-white pb-16 sm:pb-24 md:pb-32 lg:pb-40 xl:pb-48 2xl:pb-54 text-sm">
           Be who you want to be.
         </p>
-        <h1 className="text-corporate-font text-md md:text-lg lg:text-2xl pb-4 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 2xl:pb-36">
+        {/* <h1 className="text-corporate-font text-md md:text-lg lg:text-2xl pb-4 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 2xl:pb-36">
           株式会社スオウ
+        </h1> */}
+        <h1 className="pb-8 sm:pb-12 md:pb-16 lg:pb-20 xl:pb-24 2xl:pb-36">
+          <img
+            className="w-28 sm:w-36 md:w-40 lg:w-44 xl:w-48 2xl:w-52 mx-auto"
+            src="/about/corporate-name-jp.png"
+            alt="株式会社スオウ"
+          />
         </h1>
       </div>
       <svg
