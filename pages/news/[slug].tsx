@@ -1,67 +1,96 @@
-import ErrorPage from 'next/error';
-import { useRouter } from 'next/router';
-import { getAllNews, getNewsBySlug } from '../../lib/api';
-import markdownToHtml from '../../lib/markdownToHtml';
-import NewsType from '../../types/news';
+import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { serialize } from 'next-mdx-remote/serialize';
+import Head from 'next/head';
+import Image from 'next/Image';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
+import Layout from '../../components/Layout';
+import { getAllNews, getNews } from '../../lib/api';
+import { SITE_URL } from '../../lib/constants';
+import INews from '../../types/news';
 
 type Props = {
-  news: NewsType;
+  source: MDXRemoteSerializeResult;
+  frontMatter: Omit<INews, 'slug'>;
 };
 
-const News = ({ news }: Props) => {
-  const router = useRouter();
-  if (!router.isFallback && !news?.slug) {
-    return <ErrorPage statusCode={404} />;
-  }
+const NewsPage = ({ source, frontMatter }: Props) => {
+  const ogImage = SITE_URL + frontMatter.thumbnail;
+
+  const dateStr = getDateString(new Date(frontMatter.date));
+
+  console.log('===');
+  console.log(frontMatter.thumbnail);
+
   return (
-    <>
-      {/* ToDo: 既存サイトを再現しやすい方法を決めてスタイルをあてる */}
-      <h1 className="text-2xl">{news.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: news.content }} />
-    </>
+    <Layout pageTitle={frontMatter.title}>
+      <Head>
+        <meta
+          name="descritpion"
+          content={frontMatter.description}
+          key="ogDescription"
+        />
+        <meta property="og:image" content={ogImage} key="ogImage" />
+      </Head>
+
+      <Header />
+
+      <article className="container mx-auto">
+        <h1 className="text-xl lg:text-3xl font-bold mt-8 lg:mt-12 mb-2">
+          {frontMatter.title}
+        </h1>
+        <p className="text-right text-sm lg:text-xl text-gray-500 mb-6">
+          {dateStr}
+        </p>
+        <p className="text-md mb-6">{frontMatter.description}</p>
+        <div className="relative flex">
+          <Image src={frontMatter.thumbnail} layout="fill" objectFit="cover" />
+        </div>
+        <MDXRemote {...source} />
+        <button className="m-6 text-center text-gray-500">戻る</button>
+      </article>
+
+      <Footer />
+    </Layout>
   );
 };
 
-export default News;
+export default NewsPage;
 
-type Params = {
-  params: {
-    slug: string;
-  };
-};
+export const getStaticProps = async ({ params }) => {
+  const { content, data } = getNews(params?.slug as string);
 
-export const getStaticProps = async ({ params }: Params) => {
-  const news = getNewsBySlug(params.slug, [
-    'slug',
-    'title',
-    'description',
-    'thumbnail',
-    'date',
-    'content',
-  ]);
-  const content = await markdownToHtml(news.content || '');
+  const mdxSource = await serialize(content, { scope: data });
 
   return {
     props: {
-      news: {
-        ...news,
-        content,
-      },
+      source: mdxSource,
+      frontMatter: data,
     },
   };
 };
 
 export const getStaticPaths = async () => {
-  const news = getAllNews(['slug']);
+  const newss = getAllNews(['slug']);
+
+  const paths = newss.map((news) => {
+    return {
+      params: {
+        slug: news.slug,
+      },
+    };
+  });
 
   return {
-    paths: news.map((newsOne) => {
-      return {
-        params: {
-          slug: newsOne.slug,
-        },
-      };
-    }),
+    paths: paths,
     fallback: false,
   };
+};
+
+const getDateString = (date: Date) => {
+  const year = date.getFullYear();
+  const month = ('0' + (1 + date.getMonth())).slice(-2);
+  const day = ('0' + date.getDate()).slice(-2);
+
+  return `${year}/${month}/${day}`;
 };

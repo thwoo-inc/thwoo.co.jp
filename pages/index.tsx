@@ -5,10 +5,10 @@ import Menu from '../components/Menu';
 import News from '../components/News';
 import Service from '../components/Service';
 import { getAllNews } from '../lib/api';
-import NewsType from '../types/news';
+import INews from '../types/news';
 
 type Props = {
-  allNews: NewsType[];
+  allNews: INews[];
 };
 
 const Home = ({ allNews }: Props) => {
