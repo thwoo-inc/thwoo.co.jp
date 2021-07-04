@@ -2,27 +2,43 @@ import fs from 'fs';
 import matter from 'gray-matter';
 import { join } from 'path';
 
-const newsDirectory = join(process.cwd(), '_news');
-
-export const getNewsSlugs = () => {
-  return fs.readdirSync(newsDirectory);
+type Items = {
+  [key: string]: string;
 };
 
-export const getNewsBySlug = (slug: string, fields: string[]) => {
-  const realSlug = slug.replace(/\.md$/, '');
-  const fullPath = join(newsDirectory, `${realSlug}.md`);
+type News = {
+  date: {
+    [key: string]: string;
+  };
+  content: string;
+};
+
+const NEWS_PATH = join(process.cwd(), '_news');
+
+export const getNewsFilePath = (): string[] => {
+  return fs.readdirSync(NEWS_PATH).filter((path) => /\.mdx?$/.test(path));
+};
+
+export const getNews = (slug: string) => {
+  const fullPath = join(NEWS_PATH, `${slug}.mdx`);
   const fileContents = fs.readFileSync(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
 
-  type Items = {
-    [key: string]: string;
-  };
+  return { data, content };
+};
+
+export const getNewsItems = (
+  filePath: string,
+  fields: string[] = []
+): Items => {
+  const slug = filePath.replace(/\.mdx?$/, '');
+  const { data, content } = getNews(slug);
 
   const items: Items = {};
 
   fields.forEach((field) => {
     if (field === 'slug') {
-      items[field] = realSlug;
+      items[field] = slug;
     }
     if (field === 'content') {
       items[field] = content;
@@ -36,10 +52,17 @@ export const getNewsBySlug = (slug: string, fields: string[]) => {
   return items;
 };
 
-export const getAllNews = (fields: string[] = []) => {
-  const slugs = getNewsSlugs();
-  const news = slugs
-    .map((slug) => getNewsBySlug(slug, fields))
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+export const getAllNews = (fields: string[] = [], limit: number = 0) => {
+  const filePaths = getNewsFilePath();
+
+  // default zero means full
+  if (limit === 0) {
+    limit = filePaths.length;
+  }
+
+  const news = filePaths
+    .map((filePath) => getNewsItems(filePath, fields))
+    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
+    .slice(0, limit);
   return news;
 };

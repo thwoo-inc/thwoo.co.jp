@@ -1,12 +1,10 @@
 import Image from 'next/Image';
 import Link from 'next/link';
+import { getDateString } from '../lib/date';
 
 const NewsCard = ({ slug, title, description, date, thumbnail }) => {
-  const descriptionMax = 60;
-  const descriptionShort =
-    description.length < descriptionMax
-      ? description
-      : description.substr(0, descriptionMax) + '...';
+  const dateStr = getDateString(new Date(date));
+
   return (
     <Link as={`/news/${slug}`} href="/news/[slug]">
       <a className="border rounded-lg overflow-hidden shadow-md hover:shadow-xl">
@@ -23,9 +21,9 @@ const NewsCard = ({ slug, title, description, date, thumbnail }) => {
           />
         </div>
         <div className="p-4">
-          <p className="text-sm mb-1">{descriptionShort}</p>
+          <p className="text-sm mb-1">{description}</p>
           {/* TODO: 日付の型や文字列が決まってから動的にする */}
-          <p className="text-xs text-right">{date}</p>
+          <p className="text-xs text-right">{dateStr}</p>
         </div>
       </a>
     </Link>

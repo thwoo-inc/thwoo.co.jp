@@ -1,9 +1,9 @@
-import NewsType from '../types/news';
+import INews from '../types/news';
 import NewsCard from './NewsCard';
 import Section from './Section';
 
 type Props = {
-  news: NewsType[];
+  news: INews[];
 };
 
 const News = ({ news }: Props) => {
