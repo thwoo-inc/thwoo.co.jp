@@ -8,6 +8,7 @@ import Header from '../../components/Header';
 import Layout from '../../components/Layout';
 import { getAllNews, getNews } from '../../lib/api';
 import { SITE_URL } from '../../lib/constants';
+import { getDateString } from '../../lib/date';
 import INews from '../../types/news';
 
 type Props = {
@@ -49,13 +50,13 @@ const NewsPage = ({ source, frontMatter }: Props) => {
           <Image src={frontMatter.thumbnail} width={1200} height={630} />
         </div>
 
-        <div className="prose lg:prose-lg max-w-screen-lg px-4 mb-16">
+        <div className="prose lg:prose-lg max-w-screen-lg px-4 mb-16 lg:mb-24">
           <MDXRemote {...source} />
         </div>
 
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 lg:mb-12">
           <button
-            className="text-news-back"
+            className="text-news-back text-md lg:text-lg"
             type="button"
             onClick={() => router.back()}
           >
@@ -99,12 +100,4 @@ export const getStaticPaths = async () => {
     paths: paths,
     fallback: false,
   };
-};
-
-const getDateString = (date: Date) => {
-  const year = date.getFullYear();
-  const month = ('0' + (1 + date.getMonth())).slice(-2);
-  const day = ('0' + date.getDate()).slice(-2);
-
-  return `${year}/${month}/${day}`;
 };

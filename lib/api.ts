@@ -52,10 +52,17 @@ export const getNewsItems = (
   return items;
 };
 
-export const getAllNews = (fields: string[] = []) => {
+export const getAllNews = (fields: string[] = [], limit: number = 0) => {
   const filePaths = getNewsFilePath();
+
+  // default zero means full
+  if (limit === 0) {
+    limit = filePaths.length;
+  }
+
   const news = filePaths
     .map((filePath) => getNewsItems(filePath, fields))
-    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1));
+    .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
+    .slice(0, limit);
   return news;
 };

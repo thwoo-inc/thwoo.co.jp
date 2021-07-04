@@ -29,13 +29,10 @@ const Home = ({ allNews }: Props) => {
 export default Home;
 
 export const getStaticProps = async () => {
-  const allNews = getAllNews([
-    'slug',
-    'title',
-    'description',
-    'date',
-    'thumbnail',
-  ]);
+  const allNews = getAllNews(
+    ['slug', 'title', 'description', 'date', 'thumbnail'],
+    6
+  );
 
   return {
     props: { allNews },
