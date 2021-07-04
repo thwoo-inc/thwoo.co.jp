@@ -9,9 +9,7 @@ const Layout = ({ children, pageTitle }: Props) => {
   return (
     <>
       <Meta pageTitle={pageTitle} />
-      <div className="container mx-auto">
-        <main>{children}</main>
-      </div>
+      <main>{children}</main>
     </>
   );
 };

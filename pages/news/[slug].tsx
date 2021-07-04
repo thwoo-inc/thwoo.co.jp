@@ -2,6 +2,7 @@ import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
 import Head from 'next/head';
 import Image from 'next/Image';
+import { useRouter } from 'next/router';
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import Layout from '../../components/Layout';
@@ -15,12 +16,9 @@ type Props = {
 };
 
 const NewsPage = ({ source, frontMatter }: Props) => {
+  const router = useRouter();
   const ogImage = SITE_URL + frontMatter.thumbnail;
-
   const dateStr = getDateString(new Date(frontMatter.date));
-
-  console.log('===');
-  console.log(frontMatter.thumbnail);
 
   return (
     <Layout pageTitle={frontMatter.title}>
@@ -35,19 +33,35 @@ const NewsPage = ({ source, frontMatter }: Props) => {
 
       <Header />
 
-      <article className="container mx-auto">
-        <h1 className="text-xl lg:text-3xl font-bold mt-8 lg:mt-12 mb-2">
+      <article className="container-lg max-w-screen-lg mx-auto">
+        <h1 className="text-xl lg:text-3xl font-bold mb-8 px-4">
           {frontMatter.title}
         </h1>
-        <p className="text-right text-sm lg:text-xl text-gray-500 mb-6">
+        <p className="text-sm lg:text-md text-news-date text-right mb-6 px-4">
           {dateStr}
         </p>
-        <p className="text-md mb-6">{frontMatter.description}</p>
-        <div className="relative flex">
-          <Image src={frontMatter.thumbnail} layout="fill" objectFit="cover" />
+
+        <p className="text-md lg:text-lg text-news-paragraph mb-6 px-4">
+          {frontMatter.description}
+        </p>
+
+        <div className="px-4 mb-8">
+          <Image src={frontMatter.thumbnail} width={1200} height={630} />
         </div>
-        <MDXRemote {...source} />
-        <button className="m-6 text-center text-gray-500">戻る</button>
+
+        <div className="prose lg:prose-lg max-w-screen-lg px-4 mb-16">
+          <MDXRemote {...source} />
+        </div>
+
+        <div className="text-center mb-8">
+          <button
+            className="text-news-back"
+            type="button"
+            onClick={() => router.back()}
+          >
+            戻る
+          </button>
+        </div>
       </article>
 
       <Footer />
