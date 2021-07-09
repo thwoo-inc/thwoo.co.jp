@@ -4,6 +4,5 @@ export default interface INews {
   description: string;
   date: string;
   thumbnail: string;
-  content: string;
-  images: string[];
+  tags: string;
 }

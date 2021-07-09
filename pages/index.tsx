@@ -25,7 +25,7 @@ const Home = ({ allNews }: Props) => {
 
         <div id="news" className={sectionStyle}>
           <h2 className={head2Style}>NEWS</h2>
-          <NewsList news={allNews} />
+          <NewsList news={allNews} tag="" />
           <Link href="/news/">
             <a className="text-center">
               <p className="underline text-gray-500">NEWS一覧を見る</p>
@@ -53,8 +53,8 @@ export default Home;
 
 export const getStaticProps = async () => {
   const allNews = getAllNews(
-    ['slug', 'title', 'description', 'date', 'thumbnail'],
-    6
+    ['slug', 'title', 'description', 'date', 'thumbnail', 'tags'],
+    4
   );
 
   return {

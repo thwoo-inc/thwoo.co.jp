@@ -2,7 +2,7 @@ import Image from 'next/Image';
 import Link from 'next/link';
 import { getDateString } from '../lib/date';
 
-const NewsCard = ({ slug, title, description, date, thumbnail }) => {
+const NewsCard = ({ slug, title, description, date, thumbnail, tags }) => {
   const dateStr = getDateString(new Date(date));
 
   return (
@@ -20,9 +20,16 @@ const NewsCard = ({ slug, title, description, date, thumbnail }) => {
             className="z-0"
           />
         </div>
-        <div className="p-4">
-          <p className="text-sm mb-1">{description}</p>
-          <p className="text-xs text-right">{dateStr}</p>
+        <div className="p-4 align-bottom">
+          <p className="text-sm mb-2">{description}</p>
+          <div className="flex">
+            {tags.split(',').map((tag) => (
+              <p className="flex-none text-xs px-2 py-1 mr-1 border rounded-lg text-left">
+                {tag}
+              </p>
+            ))}
+            <p className="flex-grow text-xs py-1 text-right">{dateStr}</p>
+          </div>
         </div>
       </a>
     </Link>
