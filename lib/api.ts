@@ -56,7 +56,7 @@ export const getAllNews = (fields: string[] = [], limit: number = 0) => {
   const filePaths = getNewsFilePath();
 
   // default zero means full
-  if (limit === 0) {
+  if (limit === 0 || limit > filePaths.length) {
     limit = filePaths.length;
   }
 

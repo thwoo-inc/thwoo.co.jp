@@ -9,7 +9,7 @@ const NewsCard = ({ slug, title, description, date, thumbnail }) => {
     <Link as={`/news/${slug}`} href="/news/[slug]">
       <a className="border rounded-lg overflow-hidden shadow-md hover:shadow-xl">
         <div className="relative flex">
-          <h3 className="absolute bottom-0 w-full bg-white bg-opacity-75 px-4 py-2 text-md sm:text-lg font-bold z-10">
+          <h3 className="absolute bottom-0 w-full bg-gray-200 bg-opacity-75 px-4 py-2 text-md sm:text-lg font-bold z-10">
             {title}
           </h3>
           <Image
@@ -22,7 +22,6 @@ const NewsCard = ({ slug, title, description, date, thumbnail }) => {
         </div>
         <div className="p-4">
           <p className="text-sm mb-1">{description}</p>
-          {/* TODO: 日付の型や文字列が決まってから動的にする */}
           <p className="text-xs text-right">{dateStr}</p>
         </div>
       </a>
