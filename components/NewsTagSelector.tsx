@@ -11,7 +11,7 @@ const NewsTagSelector = ({ tag, tagCandidates, setTag }: Props) => {
         tagCandidates.map((candidate) => (
           <button
             key={candidate}
-            className={`mx-2 px-4 py-2 lg:text-lg lg:mx-4 lg:px-8 lg:py-4 border rounded-xl ${
+            className={`mx-2 px-4 py-2 lg:text-lg lg:mx-4 lg:px-8 border rounded-xl ${
               candidate === tag ? 'bg-red-200' : ''
             }`}
             onClick={() => (candidate === tag ? setTag('') : setTag(candidate))}

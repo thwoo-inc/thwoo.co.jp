@@ -13,7 +13,7 @@ type Props = {
   allNews: INews[];
 };
 
-const tagCandidates = ['会社', '教育', 'コンサル'];
+const tagCandidates = ['会社', '教育', 'コンサル', '開発'];
 
 const NewsIndex = ({ allNews }: Props) => {
   const [tag, setTag] = useState('');

@@ -22,7 +22,7 @@ const ServiceCard = (props) => {
       <h3 className="mx-auto mb-8 text-xl tracking-wider font-bold">
         {props.title}
       </h3>
-      <div className="w-1/2 mx-auto mb-8">{props.children}</div>
+      <div className="w-2/5 mx-auto mb-8">{props.children}</div>
       <div className="flex-shrink">
         {props.items.map((item) => (
           <div key={item.title} className="mb-4">

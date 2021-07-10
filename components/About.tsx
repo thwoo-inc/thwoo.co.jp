@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 const About = () => {
   return (
     <div className="flex flex-col lg:flex-row items-center px-4 mt-4 mb-8">
@@ -19,12 +21,9 @@ const About = () => {
               <th className="w-32 mb-8 text-left tracking-wider">代表取締役</th>
               <td className="">
                 <p>原田 哲也</p>
-                <a
-                  className="underline"
-                  href="https://thwoo.co.jp/news/2019-06-13/index.html"
-                >
-                  →代表メッセージ
-                </a>
+                <Link href="/news/2019-06-13">
+                  <a className="underline">→代表メッセージ</a>
+                </Link>
               </td>
             </tr>
             <tr className="block mb-8">
