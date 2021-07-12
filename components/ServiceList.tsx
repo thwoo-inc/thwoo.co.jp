@@ -1,7 +1,6 @@
-import Section from './Section';
 import ServiceCard from './ServiceCard';
 
-const Service = () => {
+const ServiceList = () => {
   const serviceObjects = [
     {
       title: 'IT教育事業',
@@ -16,7 +15,7 @@ const Service = () => {
           title: 'プログラミング初級講座',
           description: '手を動かして体感する社会人向けハンズオン講座',
           linkText: 'うべスタでの講座',
-          linkUrl: 'https://thwoo.co.jp/news/2020-12-05/index.html',
+          linkUrl: '/news/2020-12-05',
         },
       ],
       renderSVG: (
@@ -40,7 +39,7 @@ const Service = () => {
           description:
             'GoogleAppsやKintoneなどのITサービスを用いた事業推進/運用改善',
           linkText: '株式会社京瀧さまの例',
-          linkUrl: 'https://thwoo.co.jp/news/2020-06-29/index.html',
+          linkUrl: '/news/2020-06-29',
         },
       ],
       renderSVG: (
@@ -67,7 +66,7 @@ const Service = () => {
         {
           title: '観光プラットフォーム構想',
           linkText: '次世代観光業の草案',
-          linkUrl: 'https://thwoo.co.jp/news/2020-12-05/index.html',
+          linkUrl: '/docs/観光プラットフォーム構想_20190806.pdf',
         },
       ],
       renderSVG: (
@@ -94,25 +93,23 @@ const Service = () => {
   ];
 
   return (
-    <Section id="service" label="SERVICE">
-      <div className="px-4 grid grid-row lg:grid-cols-3 gap-8 mb-12">
-        {serviceObjects.map((obj) => (
-          <ServiceCard
-            key={obj.title}
-            title={obj.title}
-            items={obj.items.map((item) => ({
-              title: item.title,
-              description: item.description,
-              linkText: `> ${item.linkText}`,
-              linkUrl: item.linkUrl,
-            }))}
-          >
-            {obj.renderSVG}
-          </ServiceCard>
-        ))}
-      </div>
-    </Section>
+    <div className="px-4 grid grid-row lg:grid-cols-3 gap-8 mb-12">
+      {serviceObjects.map((obj) => (
+        <ServiceCard
+          key={obj.title}
+          title={obj.title}
+          items={obj.items.map((item) => ({
+            title: item.title,
+            description: item.description,
+            linkText: `> ${item.linkText}`,
+            linkUrl: item.linkUrl,
+          }))}
+        >
+          {obj.renderSVG}
+        </ServiceCard>
+      ))}
+    </div>
   );
 };
 
-export default Service;
+export default ServiceList;

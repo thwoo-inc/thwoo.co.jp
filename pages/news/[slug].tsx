@@ -53,17 +53,17 @@ const NewsPage = ({ source, frontMatter }: Props) => {
         <div className="prose lg:prose-lg max-w-screen-lg px-4 mb-16 lg:mb-24">
           <MDXRemote {...source} />
         </div>
-
-        <div className="text-center mb-8 lg:mb-12">
-          <button
-            className="text-news-back text-md lg:text-lg"
-            type="button"
-            onClick={() => router.back()}
-          >
-            戻る
-          </button>
-        </div>
       </article>
+
+      <div className="text-center mb-8 lg:mb-12">
+        <button
+          className="text-news-back text-md lg:text-lg"
+          type="button"
+          onClick={() => router.back()}
+        >
+          戻る
+        </button>
+      </div>
 
       <Footer />
     </Layout>
