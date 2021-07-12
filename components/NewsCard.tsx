@@ -7,7 +7,7 @@ const NewsCard = ({ slug, title, description, date, thumbnail, tags }) => {
 
   return (
     <Link as={`/news/${slug}`} href="/news/[slug]">
-      <a className="border rounded-lg overflow-hidden shadow-md hover:shadow-xl">
+      <a className="flex flex-col border rounded-lg overflow-hidden shadow-md hover:shadow-xl">
         <div className="relative flex">
           <h3 className="absolute bottom-0 w-full bg-gray-200 bg-opacity-75 px-4 py-2 text-md sm:text-lg font-bold z-10">
             {title}
@@ -20,11 +20,14 @@ const NewsCard = ({ slug, title, description, date, thumbnail, tags }) => {
             className="z-0"
           />
         </div>
-        <div className="p-4 align-bottom">
-          <p className="text-sm mb-2">{description}</p>
+        <div className="flex flex-col flex-1 p-4 align-bottom">
+          <p className="flex-1 text-sm mb-2">{description}</p>
           <div className="flex">
             {tags.split(',').map((tag) => (
-              <p className="flex-none text-xs px-2 py-1 mr-1 border rounded-lg text-left">
+              <p
+                key={tag}
+                className="flex-none text-xs px-2 py-1 mr-1 border rounded-lg text-left"
+              >
                 {tag}
               </p>
             ))}
