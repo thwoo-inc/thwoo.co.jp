@@ -1,6 +1,5 @@
 import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
 import { serialize } from 'next-mdx-remote/serialize';
-import Head from 'next/head';
 import Image from 'next/Image';
 import { useRouter } from 'next/router';
 import Footer from '../../components/Footer';
@@ -12,26 +11,23 @@ import { getDateString } from '../../lib/date';
 import INews from '../../types/news';
 
 type Props = {
+  slug: string;
   source: MDXRemoteSerializeResult;
   frontMatter: Omit<INews, 'slug'>;
 };
 
-const NewsPage = ({ source, frontMatter }: Props) => {
+const NewsPage = ({ slug, source, frontMatter }: Props) => {
   const router = useRouter();
   const ogImage = SITE_URL + frontMatter.thumbnail;
   const dateStr = getDateString(new Date(frontMatter.date));
 
   return (
-    <Layout pageTitle={frontMatter.title}>
-      <Head>
-        <meta
-          name="descritpion"
-          content={frontMatter.description}
-          key="ogDescription"
-        />
-        <meta property="og:image" content={ogImage} key="ogImage" />
-      </Head>
-
+    <Layout
+      title={frontMatter.title}
+      description={frontMatter.description}
+      url={`/news/${slug}`}
+      thumbnail={frontMatter.thumbnail}
+    >
       <Header />
 
       <article className="container-lg max-w-screen-lg mx-auto">
@@ -79,6 +75,7 @@ export const getStaticProps = async ({ params }) => {
 
   return {
     props: {
+      slug: params?.slug,
       source: mdxSource,
       frontMatter: data,
     },

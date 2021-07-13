@@ -3,9 +3,11 @@ import About from '../components/About';
 import Footer from '../components/Footer';
 import Hero from '../components/Hero';
 import Menu from '../components/Menu';
+import Meta from '../components/Meta';
 import NewsList from '../components/NewsList';
 import ServiceList from '../components/ServiceList';
 import { getAllNews } from '../lib/api';
+import { SITE_DESCRIPTION, SITE_NAME } from '../lib/constants';
 import INews from '../types/news';
 
 type Props = {
@@ -18,34 +20,43 @@ const Home = ({ allNews }: Props) => {
     'w-32 mb-8 pb-1 mx-auto text-corporate-font text-center text-xl md:text-2xl tracking-widest border-b-2 border-corporate-primary';
 
   return (
-    <div className="bg-white">
-      <div className="container mx-auto drop-shadow">
-        <Hero />
-        <Menu />
+    <>
+      <Meta
+        title={SITE_NAME}
+        description={SITE_DESCRIPTION}
+        url="/"
+        thumbnail="/home-thumbnail.png"
+      />
 
-        <div id="news" className={sectionStyle}>
-          <h2 className={head2Style}>NEWS</h2>
-          <NewsList news={allNews} tag="" />
-          <Link href="/news/">
-            <a className="text-center">
-              <p className="underline text-gray-500">NEWS一覧を見る</p>
-            </a>
-          </Link>
+      <main className="bg-white">
+        <div className="container mx-auto drop-shadow">
+          <Hero />
+          <Menu />
+
+          <div id="news" className={sectionStyle}>
+            <h2 className={head2Style}>NEWS</h2>
+            <NewsList news={allNews} tag="" />
+            <Link href="/news/">
+              <a className="text-center">
+                <p className="underline text-gray-500">NEWS一覧を見る</p>
+              </a>
+            </Link>
+          </div>
+
+          <div id="service" className={sectionStyle}>
+            <h2 className={head2Style}>SERVICE</h2>
+            <ServiceList />
+          </div>
+
+          <div id="about" className={sectionStyle}>
+            <h2 className={head2Style}>ABOUT</h2>
+            <About />
+          </div>
+
+          <Footer />
         </div>
-
-        <div id="service" className={sectionStyle}>
-          <h2 className={head2Style}>SERVICE</h2>
-          <ServiceList />
-        </div>
-
-        <div id="about" className={sectionStyle}>
-          <h2 className={head2Style}>ABOUT</h2>
-          <About />
-        </div>
-
-        <Footer />
-      </div>
-    </div>
+      </main>
+    </>
   );
 };
 
