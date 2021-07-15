@@ -2,13 +2,21 @@ import Meta from './Meta';
 
 type Props = {
   children: React.ReactNode;
-  pageTitle?: string;
+  title?: string;
+  description?: string;
+  url?: string;
+  thumbnail?: string;
 };
 
-const Layout = ({ children, pageTitle }: Props) => {
+const Layout = ({ children, title, description, url, thumbnail }: Props) => {
   return (
     <>
-      <Meta pageTitle={pageTitle} />
+      <Meta
+        title={title}
+        description={description}
+        url={url}
+        thumbnail={thumbnail}
+      />
       <main>{children}</main>
     </>
   );
